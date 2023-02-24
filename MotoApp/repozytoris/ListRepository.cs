@@ -31,8 +31,6 @@ namespace MotoApp.repozytoris
             return _items.Single(item => item.Id == id);
         }
 
-       
-
         public void Remove(T item) 
         {
             _items.Remove(item);

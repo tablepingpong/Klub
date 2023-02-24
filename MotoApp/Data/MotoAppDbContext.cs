@@ -8,12 +8,12 @@ namespace MotoApp.Data
     {
         public DbSet<Athlete> Athletes => Set<Athlete>();
 
-        //public DbSet<BusinessPartner> BusinessPartners => Set<BusinessPartner>();
+        public DbSet<Trener> Treners => Set<Trener>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseInMemoryDatabase("StorageAppDb");
+            optionsBuilder.UseInMemoryDatabase(@"Server=(localdb)\mssqllocaldb;Database=MotoAppDB;Trusted_connection=True;");
         }
 
     }

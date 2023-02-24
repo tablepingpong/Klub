@@ -17,6 +17,7 @@ namespace MotoApp.Entities
 
         public string FirstName { get; set; }
 
+
        
     }
 }

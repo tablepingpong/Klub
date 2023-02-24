@@ -11,10 +11,5 @@ namespace MotoApp.repozytoris;
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
-     
-   
-
-
-   
     }
 

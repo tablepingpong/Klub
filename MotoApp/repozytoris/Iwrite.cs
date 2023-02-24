@@ -6,5 +6,6 @@ namespace MotoApp.repozytoris;
         void Add(T item);
         void Remove(T item);
         void Save();
+        
     }
 
