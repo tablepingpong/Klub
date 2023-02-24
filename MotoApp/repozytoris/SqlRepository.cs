@@ -1,11 +1,10 @@
-﻿namespace MotoApp.repozytoris;
-
+﻿
 using Microsoft.EntityFrameworkCore;
 using MotoApp.Entities;
 using System;
-using System.Runtime.CompilerServices;
+using System.Text;
 
-
+namespace MotoApp.repozytoris;
 public class SqlRepository<T> : IRepository<T> where T : class, IEntities, new()
 {
     private readonly DbSet<T> _dbSet;
@@ -16,6 +15,7 @@ public class SqlRepository<T> : IRepository<T> where T : class, IEntities, new()
     {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
+        _dbContext.Database.EnsureCreated();
     }
 
     public event EventHandler<T>? ItemAdded;

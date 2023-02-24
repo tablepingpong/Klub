@@ -20,10 +20,10 @@ namespace MotoApp.repozytoris
 
         public void Save()
         {
-            foreach (var item in _items)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in _items)
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
 
         public T GetById(int id)
