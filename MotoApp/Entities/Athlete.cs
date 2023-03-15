@@ -25,7 +25,8 @@ public enum Category
 {
         Mlodzik,
         Kadet,
-        Junior
+        Junior,
+        Trener
 }
 
 

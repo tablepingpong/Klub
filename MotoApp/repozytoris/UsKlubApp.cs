@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 
 namespace MotoApp.repozytoris;
 
-public class UserInterface
+public class UsKlubApp
 {
     public static void Run()
     {
 
         bool isRun = true;
-        var athleteRepositoris = new SqlRepository<Athlete>(new MotoAppDbContext(), AthleteAdd, AthleteRemove);
+        var athleteRepositoris = new SqlRepository<Athlete>(new MotoAppDbContext());
         var trenerRepositoris = new SqlRepository<Trener>(new MotoAppDbContext());
         athleteRepositoris.ItemAdded += AthleteRepositoryOnItemAdded;
         athleteRepositoris.ItemRemove += AthleteRepostoryOnItemRemove;
@@ -26,9 +26,9 @@ public class UserInterface
             Console.WriteLine(
                 "Program obsługuje członków klubu sportowego\n" +
                 "W - Add player \n" +
-                "X - Dodaj trenerów\n" +
-                "S - Usuń członka klubu\n" +
-                "A - Pokaż wszystkich członków klubu\n" +
+                "X - Add Trener\n" +
+                "S - Delete player or trener\n" +
+                "A - Show all member klub\n" +
                 "Q - Close app\n");
 
             var input = Console.ReadLine();
@@ -85,28 +85,18 @@ public class UserInterface
 
         static void AthleteRepositoryOnItemAdded(object? sender, Athlete e)
         {
-            string playerSerialized = JsonConvert.SerializeObject(sender);
-            File.WriteAllText(@"Athlete.json", playerSerialized);
+            Console.WriteLine($"Athlete added => {e.FirstName} - Date:{DateTime.UtcNow} from {sender?.GetType().Name}");
+            var auditFile = File.AppendText(@"auditAthlete.Json");
+            using (auditFile)
+            {
+                auditFile.WriteLine($"{e.FirstName}-Date:{DateTime.UtcNow}");
+                auditFile.Dispose();
+            }
         }
 
         static void AthleteRepostoryOnItemRemove(object? sender, Athlete e)
         {
-            using (StreamWriter sw = new("athlete.txt", true))
-            {
-                sw.WriteLine(DateTime.Now.ToString() + $" - Athlete added:\n" +
-                    $"{e}\n");
-            }
-        }
-
-        static void AthleteAdd(Athlete item)
-        {
-            var athlete = (Athlete)item;
-            Console.WriteLine($"{item.ToString} is added");
-        }
-
-        static void AthleteRemove(Athlete item)
-        {
-            Console.WriteLine($"{item.ToString}is remove");
+           Console.WriteLine($"Athlete remove => {e.FirstName}- Date:{DateTime.UtcNow} from  {sender?.GetType().Name}");  
         }
 
         static void AddPlayers<T>(Iwrite<T> repositoris, T item) where T : class, IEntities
@@ -157,27 +147,7 @@ public class UserInterface
                                 Birthyear = birthyear,
                                 Pesel = pesel,
                                 Phonenumber = phonenumber,
-                                Category = Category.Mlodzik
-                            };
-
-                        case "Kadet":
-                            return new Trener
-                            {
-                                FirstName = firstname,
-                                Birthyear = birthyear,
-                                Pesel = pesel,
-                                Phonenumber = phonenumber,
-                                Category = Category.Kadet
-                            };
-
-                        case "Junior":
-                            return new Trener
-                            {
-                                FirstName = firstname,
-                                Birthyear = birthyear,
-                                Pesel = pesel,
-                                Phonenumber = phonenumber,
-                                Category = Category.Junior
+                                Category = Category.Trener
                             };
                         default:
                             break;
@@ -219,7 +189,7 @@ public class UserInterface
                                 Category = Category.Mlodzik
                             };
 
-                        case "Kadet":
+                        case "2":
                             return new Athlete
                             {
                                 FirstName = firstname,
@@ -229,7 +199,7 @@ public class UserInterface
                                 Category = Category.Kadet
                             };
 
-                        case "Junior":
+                        case "3":
                             return new Athlete
                             {
                                 FirstName = firstname,

@@ -1,8 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using MotoApp.Entities;
-using System;
-using System.Text;
+
 
 namespace MotoApp.repozytoris;
 public class SqlRepository<T> : IRepository<T> where T : class, IEntities, new()
@@ -11,11 +10,10 @@ public class SqlRepository<T> : IRepository<T> where T : class, IEntities, new()
     private readonly DbContext _dbContext;
     
 
-    public SqlRepository(DbContext dbContext, Action<T>? itemAddedCallback = null, Action<T>? itemRemoveCallback = null)
+    public SqlRepository(DbContext dbContext)
     {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
-        _dbContext.Database.EnsureCreated();
     }
 
     public event EventHandler<T>? ItemAdded;

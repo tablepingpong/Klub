@@ -1,4 +1,6 @@
 ﻿using MotoApp.Entities;
+using System.IO;
+using System.Text.Json;
 
 namespace MotoApp.repozytoris
 {
@@ -6,6 +8,8 @@ namespace MotoApp.repozytoris
         
     {
         private readonly List<T> _items = new();
+
+        private readonly string path = $"{typeof(T).Name}_save.json";
 
         public IEnumerable<T>GetAll()
         {
@@ -20,6 +24,10 @@ namespace MotoApp.repozytoris
 
         public void Save()
         {
+
+            File.Delete(path);
+            var objectsSerialized = JsonSerializer.Serialize<IEnumerable<T>>(_items);
+            File.WriteAllText(path, objectsSerialized);
             //foreach (var item in _items)
             //{
             //    Console.WriteLine(item);
