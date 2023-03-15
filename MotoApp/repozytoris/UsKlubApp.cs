@@ -89,7 +89,7 @@ public class UsKlubApp
             var auditFile = File.AppendText(@"auditAthlete.txt");
             using (auditFile)
             {
-                auditFile.WriteLine($"{e.FirstName}-Date:{DateTime.UtcNow}");
+                auditFile.WriteLine($"{DateTime.UtcNow} Added player: {e}");
                 auditFile.Dispose();
             }
         }
