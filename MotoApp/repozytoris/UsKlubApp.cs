@@ -86,7 +86,7 @@ public class UsKlubApp
         static void AthleteRepositoryOnItemAdded(object? sender, Athlete e)
         {
             Console.WriteLine($"Athlete added => {e.FirstName} - Date:{DateTime.UtcNow} from {sender?.GetType().Name}");
-            var auditFile = File.AppendText(@"auditAthlete.Json");
+            var auditFile = File.AppendText(@"auditAthlete.txt");
             using (auditFile)
             {
                 auditFile.WriteLine($"{e.FirstName}-Date:{DateTime.UtcNow}");

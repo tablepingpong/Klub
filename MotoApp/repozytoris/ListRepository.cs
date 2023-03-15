@@ -1,4 +1,5 @@
 ﻿using MotoApp.Entities;
+using Newtonsoft.Json;
 using System.IO;
 using System.Text.Json;
 
@@ -24,10 +25,15 @@ namespace MotoApp.repozytoris
 
         public void Save()
         {
-
             File.Delete(path);
-            var objectsSerialized = JsonSerializer.Serialize<IEnumerable<T>>(_items);
-            File.WriteAllText(path, objectsSerialized);
+            string objectsSerialized = JsonConvert.SerializeObject(_items);
+            var fileJson = File.AppendText(path);
+            using(fileJson)
+            {
+                fileJson.Write(objectsSerialized);
+                fileJson.Dispose();
+            }
+
             //foreach (var item in _items)
             //{
             //    Console.WriteLine(item);
