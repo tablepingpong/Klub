@@ -1,5 +1,5 @@
 ﻿using MotoApp.Entities;
-namespace MotoApp.repozytoris;
+namespace MotoApp.Repozytory;
 
     public interface Iwrite<in T> where T : class, IEntities
     {

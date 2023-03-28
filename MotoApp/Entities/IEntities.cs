@@ -9,5 +9,7 @@ namespace MotoApp.Entities
     public interface IEntities
     {
         int Id { get; set; }
+
+        string ToString();
     }
 }

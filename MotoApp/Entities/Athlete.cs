@@ -2,7 +2,7 @@
 
 namespace MotoApp.Entitis;
 
-public class Athlete : EntitiesBase
+public class Athlete : EntityBase
 {
     public string FirstName { get; set; }
 

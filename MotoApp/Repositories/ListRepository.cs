@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Text.Json;
 
-namespace MotoApp.repozytoris
+namespace MotoApp.Repozytory
 {
     public class ListRepository<T> : IRepository<T> where T : class, IEntities, new()
         

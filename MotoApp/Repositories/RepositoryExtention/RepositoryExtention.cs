@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MotoApp.repozytoris.Repoextention;
+namespace MotoApp.Repozytory.Repoextention;
 
 public static class RepositoryExtention
 { 

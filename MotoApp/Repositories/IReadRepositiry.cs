@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MotoApp.repozytoris;
+namespace MotoApp.Repozytory;
 
     public interface IRead<out T> where T : class, IEntities
     {

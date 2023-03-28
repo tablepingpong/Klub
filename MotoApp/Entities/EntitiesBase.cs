@@ -11,7 +11,7 @@ using Xunit;
 
 namespace MotoApp.Entities
 {
-    public abstract class EntitiesBase : IEntities
+    public abstract class EntityBase : IEntities
     {
         public int Id { get; set; }
 
